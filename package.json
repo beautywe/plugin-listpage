@@ -6,6 +6,7 @@
   "scripts": {
     "test": "nyc ava test/**/*.test.js",
     "test:report": "nyc report --reporter=html",
+    "test:coverage": "nyc --reporter=html ava",
     "build:pro": "rm -rf ./dist && node_modules/.bin/babel src -d dist",
     "build:watch": "babel src --watch -d dist",
     "code-check": "eslint src/**",
