@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/beautywe/beautywe-plugin-listpage/tree/master.svg?style=svg)](https://circleci.com/gh/beautywe/beautywe-plugin-listpage/tree/master)
 
 [![NPM Version](https://img.shields.io/npm/v/@beautywe/plugin-listpage.svg)](https://www.npmjs.com/package/@beautywe/plugin-listpage) [![NPM Downloads](https://img.shields.io/npm/dm/@beautywe/plugin-listpage.svg)](https://www.npmjs.com/package/@beautywe/plugin-listpage) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@beautywe/plugin-listpage.svg)
+[![Coverage Status](https://coveralls.io/repos/github/beautywe/beautywe-plugin-listpage/badge.svg)](https://coveralls.io/github/beautywe/beautywe-plugin-listpage)
 
 ## Feature
 1. 满足常用「数据列表分页」的业务场景
@@ -16,17 +17,6 @@
 ## 适用性
 
 只适用 `BeautyWe.BtPage`
-
-## Unit test coverage
-```
------------|----------|----------|----------|----------|-------------------|
-File       |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
------------|----------|----------|----------|----------|-------------------|
-All files  |    88.89 |    80.95 |    88.57 |    91.14 |                   |
- list.js   |    89.13 |       72 |    93.75 |    95.24 |           104,105 |
- plugin.js |    88.64 |    94.12 |    84.21 |    86.49 |   41,49,50,59,113 |
------------|----------|----------|----------|----------|-------------------|
-```
 
 # 安装
 
