@@ -5,9 +5,9 @@
   "main": "dist/plugin.js",
   "scripts": {
     "test": "nyc ava test/**/*.test.js",
-    "test-report": "nyc report --reporter=html",
-    "build-pro": "rm -rf ./dist && node_modules/.bin/babel src -d dist",
-    "build-watch": "babel src --watch -d dist",
+    "test:report": "nyc report --reporter=html",
+    "build:pro": "rm -rf ./dist && node_modules/.bin/babel src -d dist",
+    "build:watch": "babel src --watch -d dist",
     "code-check": "eslint src/**",
     "code-fix": "eslint --fix src/**",
     "lint": "git diff --cached --name-only | grep -E '\\.(js|jsx)$' | xargs eslint",
