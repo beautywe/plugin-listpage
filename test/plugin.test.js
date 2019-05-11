@@ -39,7 +39,7 @@ test('use plugin', (t) => {
         .then(() => newAppUseingPlugin({
             lists: {
                 name: 'test',
-                fetchPageData: () => { },
+                fetchPageData: () => ({ name: 'jc' }),
             },
         }))
         .then(({ page, plugin }) => {
@@ -55,10 +55,10 @@ test('array type for options', (t) => {
         .then(() => newAppUseingPlugin({
             lists: [{
                 name: 'test',
-                fetchPageData: () => { },
+                fetchPageData: () => ({ name: 'jc' }),
             }, {
                 name: 'test2',
-                fetchPageData: () => { },
+                fetchPageData: () => ({ name: 'jc' }),
             }],
         }))
         .then(({ page, plugin }) => {
@@ -95,7 +95,7 @@ test('list.updateData', (t) => {
         .then(() => newAppUseingPlugin({
             lists: {
                 name: 'test',
-                fetchPageData: () => { },
+                fetchPageData: () => ({ name: 'jc' }),
             },
         }))
         .then(({ page, plugin }) => {
@@ -121,6 +121,7 @@ test('list.nextPage & list.reloadPage', (t) => {
                 name: 'test2',
                 fetchPageData: () => test2PageData,
             }],
+            autoLoadFirstPage: false,
         }))
         .then((result) => {
             page = result.page;
@@ -274,6 +275,7 @@ test('setTotalPage', (t) => {
                 fetchPageData: () => testPageData,
                 pageData: { totalPage: 2 },
             }],
+            autoLoadFirstPage: false,
         }))
 
         // setTotal page on options
@@ -330,6 +332,7 @@ test('setTotalPage', (t) => {
                         name: 'test',
                         fetchPageData: () => testPageData,
                     }],
+                    autoLoadFirstPage: false,
                 }))
 
                 .then((result) => {
@@ -425,6 +428,7 @@ test('pullDownRefresh', (t) => {
             }],
             enabledPullDownRefresh: true,
             enabledReachBottom: true,
+            autoLoadFirstPage: false,
         }))
 
         .then((result) => {
@@ -502,6 +506,7 @@ test('reachBottom', (t) => {
                 fetchPageData: () => testPageData,
             }],
             enabledReachBottom: true,
+            autoLoadFirstPage: false,
         }))
 
         .then((result) => {
@@ -578,6 +583,7 @@ test('setActiveList', (t) => {
             }],
             enabledReachBottom: true,
             enabledPullDownRefresh: true,
+            autoLoadFirstPage: false,
         }))
 
         .then((result) => {
