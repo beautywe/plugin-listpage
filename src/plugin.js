@@ -6,11 +6,13 @@ import List from './list';
  * @params {function} options.lists[n].fetchPageData
  * @params {boolean} [options.enabledPullDownRefresh]
  * @params {boolean} [options.enabledReachBottom]
+ * @params {boolean} [options.autoLoadFirstPage]
  */
 export default function plugin(options = {}) {
     const globalOptions = Object.assign({
         enabledPullDownRefresh: false,
         enabledReachBottom: false,
+        autoLoadFirstPage: true,
         lists: [{}],
     }, options);
 
@@ -24,6 +26,14 @@ export default function plugin(options = {}) {
         if (!opt.fetchPageData || typeof opt.fetchPageData !== 'function') throw new Error(`options.lists[${index}].fetchPageData should be a function`);
     }
 
+    // load first page
+    function loadFirstPage(theHost){
+        globalOptions.lists.map(({name}) => {
+            const list = theHost.listPage.getList(name);
+            list.nextPage().then(() => list.updateData()); 
+        });
+    }
+
     return {
         name: 'listPage',
 
@@ -32,14 +42,16 @@ export default function plugin(options = {}) {
             activeListName: globalOptions.lists[0].name,
         },
 
-        nativeHook: {
-            onLoad() {
-                return this.listPage.initList();
-            },
+        initialize({ theHost }) {
+            Promise
+                .resolve()
+                .then(() => theHost.listPage.initList())
+                .then(() => {
+                    if (globalOptions.autoLoadFirstPage) loadFirstPage(theHost);
+                });
+        },
 
-            onLaunch() {
-                return this.listPage.initList();
-            },
+        nativeHook: {
 
             // 下拉刷新
             onPullDownRefresh() {

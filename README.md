@@ -41,33 +41,6 @@ page.use(listpage({
 ## 单列表
 
 ```javascript
-
-const page = new BtPage({
-    onLoad() {
-        
-        // 手动加载页面数据
-        const goodsList = page.listPage.getList('goods');
-       
-        // 获取下一页数据
-        goodsList.nextPage().then(() => {
-           
-           // 同步数据到 data
-            return goodsList.updateData();
-        }).then(() => {
-
-            // 读取列表数据
-            this.data.listPage.goods;
-
-            // goods = {
-            //     data: [...],     // 视图层，通过该字段来获取具体的数据
-            //     hasMore: true,   // 视图层，通过该字段来识别是否有下一页
-            //     currentPage: 1,  // 视图层，通过该字段来识别当前第几页
-            //     totalPage: undefined,
-            // }
-        });
-    },
-});
-
 // 使用插件
 page.use(listpage({
     lists: [{
@@ -85,6 +58,14 @@ page.use(listpage({
     onReachBottom: true,    // 开启上拉加载， 默认 false
 }));
 
+// goods 数据会被加载到 
+// this.data.listPage.goods = {
+//     data: [...],     // 视图层，通过该字段来获取具体的数据
+//     hasMore: true,   // 视图层，通过该字段来识别是否有下一页
+//     currentPage: 1,  // 视图层，通过该字段来识别当前第几页
+//     totalPage: undefined,
+// }
+
 Page(page);
 ```
 
@@ -98,27 +79,6 @@ listPage 会根据 `options.lists` 的参数，创建 [Class List](#class-list) 
 ## 多列表
 
 ```javascript
-const page = new BtPage({
-    onLoad() {
-        // 手动加载页面数据
-        const goodsList = page.listPage.getList('goods');
-        const cardsList = page.listPage.getList('cards');
-
-        return Promise.all([
-            // 获取和同步 goods 数据
-            goodsList.nextPage().then(() => goodsList.updateData()),
-
-            // 获取和同步 cards 数据
-            cardsList.nextPage().then(() => cardsList.updateData())
-        ]).then(() => {
-
-            // 读取列表数据
-            this.data.listPage.goods;
-            this.data.listPage.cards;
-        });
-    },
-});
-
 // 使用插件
 page.use(listpage({
     lists: [{
@@ -143,6 +103,77 @@ page.use(listpage({
 }));
 
 Page(page);
+
+// goods 数据会被加载到 
+// this.data.listPage.goods = {
+//     data: [...],     // 视图层，通过该字段来获取具体的数据
+//     hasMore: true,   // 视图层，通过该字段来识别是否有下一页
+//     currentPage: 1,  // 视图层，通过该字段来识别当前第几页
+//     totalPage: undefined,
+// }
+
+// cards 数据会被加载到 
+// this.data.listPage.cards = {
+//     data: [...],     // 视图层，通过该字段来获取具体的数据
+//     hasMore: true,   // 视图层，通过该字段来识别是否有下一页
+//     currentPage: 1,  // 视图层，通过该字段来识别当前第几页
+//     totalPage: undefined,
+// }
+```
+
+### 手动加载第一页数据
+
+默认情况下，第一页的数据会在页面 `onLoad` 的时候被加载，如果不需要这个逻辑，可以切换到手动加载：
+
+```javascript
+const page = new BtPage({
+    onLoad() {
+        
+        // 获取 goods list 实例
+        const goodsList = this.listPage.getList('goods');
+       
+        return Promise
+            .resolve
+
+            // 获取下一页数据，只获取数据，并不会同步到 this.data
+            .then(() => goodsList.nextPage())
+
+            // 同步数据到 data，里部执行 this.setData
+            .then(() => goodsList.updateData())
+
+            .then(() => {
+                // 读取列表数据
+                this.data.listPage.goods;
+
+                // goods = {
+                //     data: [...],     // 视图层，通过该字段来获取具体的数据
+                //     hasMore: true,   // 视图层，通过该字段来识别是否有下一页
+                //     currentPage: 1,  // 视图层，通过该字段来识别当前第几页
+                //     totalPage: undefined,
+                // }
+            });
+    },
+});
+
+// 使用插件
+page.use(listpage({
+    lists: [{
+        name: 'goods',  // 数据名
+        pageSize: 20,   // 每页多少条数据，默认 10
+
+        // 每一页的数据源，没次加载页面时，会调用函数，然后取返回的数据。
+        fetchPageData({ pageNo, pageSize }) {
+            return API
+                .fetch(`xxx/goodsList?pageNo=${pageNo}&&pageSize=${pageSize}`)
+                .then((rawData) => formaterData(rawData));
+        },
+    }],
+    onPullDownRefresh: true,    // 开启下拉重载， 默认 false
+    onReachBottom: true,    // 开启上拉加载， 默认 false
+    autoLoadFirstPage: false,   // 关闭自动加载第一页数据
+}));
+
+Page(page);
 ```
 
 ### Active List
@@ -152,7 +183,7 @@ Page(page);
 
 listPage 当然对种问题的有优雅的解决方案的。
 
-我们引入了 「Active List」 的概念，它的默认值是 `options.lists` 中数组第一个列表。
+于是「Active List」 的概念被引入了，它的默认值是 `options.lists` 中数组第一个列表。
 
 我们可以通过 `theHost.listPage.setActiveList(name)` 来改变当前 Active List：
 
