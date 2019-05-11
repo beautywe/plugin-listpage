@@ -54,8 +54,8 @@ page.use(listpage({
                 .then((rawData) => formaterData(rawData));
         },
     }],
-    onPullDownRefresh: true,    // 开启下拉重载， 默认 false
-    onReachBottom: true,    // 开启上拉加载， 默认 false
+    enabledPullDownRefresh: true,    // 开启下拉重载， 默认 false
+    enabledReachBottom: true,    // 开启上拉加载， 默认 false
 }));
 
 // goods 数据会被加载到 
@@ -98,8 +98,8 @@ page.use(listpage({
                 .then((rawData) => formaterData(rawData));
         },
     }],
-    onPullDownRefresh: true,    // 开启下拉重载， 默认 false
-    onReachBottom: true,    // 开启上拉加载， 默认 false
+    enabledPullDownRefresh: true,    // 开启下拉重载， 默认 false
+    enabledReachBottom: true,    // 开启上拉加载， 默认 false
 }));
 
 Page(page);
@@ -168,8 +168,8 @@ page.use(listpage({
                 .then((rawData) => formaterData(rawData));
         },
     }],
-    onPullDownRefresh: true,    // 开启下拉重载， 默认 false
-    onReachBottom: true,    // 开启上拉加载， 默认 false
+    enabledPullDownRefresh: true,    // 开启下拉重载， 默认 false
+    enabledReachBottom: true,    // 开启上拉加载， 默认 false
     autoLoadFirstPage: false,   // 关闭自动加载第一页数据
 }));
 
@@ -204,8 +204,8 @@ page.use(listpage({
         name: 'cards',
         // ... others options
     }],
-    onPullDownRefresh: true,
-    onReachBottom: true,
+    enabledPullDownRefresh: true,
+    enabledReachBottom: true,
 }));
 
 Page(page);
