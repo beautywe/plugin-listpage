@@ -1,8 +1,9 @@
 # 介绍
 
-[![CircleCI](https://circleci.com/gh/beautywe/beautywe-plugin-listpage/tree/master.svg?style=svg)](https://circleci.com/gh/beautywe/beautywe-plugin-listpage/tree/master)
-
-[![NPM Version](https://img.shields.io/npm/v/@beautywe/plugin-listpage.svg)](https://www.npmjs.com/package/@beautywe/plugin-listpage) [![NPM Downloads](https://img.shields.io/npm/dm/@beautywe/plugin-listpage.svg)](https://www.npmjs.com/package/@beautywe/plugin-listpage) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@beautywe/plugin-listpage.svg)
+[![CircleCI](https://img.shields.io/circleci/project/github/beautywe/plugin-listpage/master.svg)](https://circleci.com/gh/beautywe/plugin-listpage) 
+[![NPM Version](https://img.shields.io/npm/v/@beautywe/plugin-listpage.svg)](https://www.npmjs.com/package/@beautywe/plugin-listpage) 
+[![NPM Downloads](https://img.shields.io/npm/dm/@beautywe/plugin-listpage.svg)](https://www.npmjs.com/package/@beautywe/plugin-listpage) 
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@beautywe/plugin-listpage.svg)
 [![Coverage Status](https://coveralls.io/repos/github/beautywe/beautywe-plugin-listpage/badge.svg)](https://coveralls.io/github/beautywe/beautywe-plugin-listpage)
 
 ## Feature

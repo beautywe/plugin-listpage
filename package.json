@@ -1,6 +1,6 @@
 {
   "name": "@beautywe/plugin-listpage",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "List page plugin for beautywe",
   "main": "dist/plugin.js",
   "scripts": {
@@ -21,7 +21,7 @@
   ],
   "author": "JerryC8080",
   "devDependencies": {
-    "@beautywe/core": "^0.0.10",
+    "@beautywe/core": "^1.0.0",
     "@babel/register": "^7.4.0",
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
@@ -59,11 +59,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beautywe/beautywe-plugin-listpage.git"
+    "url": "git+https://github.com/beautywe/plugin-listpage.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/beautywe/beautywe-plugin-listpage/issues"
+    "url": "https://github.com/beautywe/plugin-listpage/issues"
   },
-  "homepage": "https://github.com/beautywe/beautywe-plugin-listpage#readme"
+  "homepage": "https://github.com/beautywe/plugin-listpage#readme"
 }
