@@ -1,6 +1,6 @@
 {
   "name": "@beautywe/plugin-listpage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "List page plugin for beautywe",
   "main": "dist/plugin.js",
   "scripts": {
